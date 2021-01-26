@@ -60,7 +60,6 @@ export const LogIn = () => {
           Cookies.set('x_auth_refresh', refreshToken);
 
           dispatch({type: "SET_USER", user: result.data.data.user});
-
           history.push("/news");
         } 
       } catch (err) {
