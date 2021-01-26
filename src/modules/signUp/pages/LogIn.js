@@ -21,7 +21,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Cookies from 'js-cookie';
 
 import { submitLogIn } from '../stores/authApi';
-import { getAllNewsApi } from '../../news/stores/newsApi';
 import hookFormStyles from '../../../styles/hookFormStyle';
 import authContext from '../stores/authContext';
 
@@ -61,11 +60,6 @@ export const LogIn = () => {
           Cookies.set('x_auth_refresh', refreshToken);
 
           dispatch({type: "SET_USER", user: result.data.data.user});
-
-          const articles = await getAllNewsApi();
-
-          dispatch({type: "SET_NEWS", news: articles.data.data});
-
           history.push("/news");
         } 
       } catch (err) {

@@ -4,7 +4,7 @@ export const pullNewsApi = async () => {
     try {
         return await customAxios({
             method: 'post',
-            url: '//news',
+            url: '/api/news',
         })
     } catch (err) {
         throw new Error();
