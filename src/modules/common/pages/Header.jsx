@@ -13,7 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import { submitLogOut } from '../../signUp/stores/authApi';
-import { pullNewsApi } from '../../news/stores/newsApi';
+import { pullNewsApi } from '../../articles/stores/newsApi';
 import authContext from '../../signUp/stores/authContext';
 
 const useStyles = makeStyles((theme) => ({
