@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom' 
 import { SignUp } from './modules/signUp/pages/SignUp';
 import { LogIn } from './modules/signUp/pages/LogIn';
-import News from './modules/news/pages/News';
+import News from './modules/articles/pages/News';
 import authContext from './modules/signUp/stores/authContext';
 import authReducer, { initialState } from './modules/signUp/stores/authReducer';
 
