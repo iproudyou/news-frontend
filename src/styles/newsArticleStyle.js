@@ -8,7 +8,7 @@ const newsArticleStyle = makeStyles((theme) => ({
     },
       
     all_news: {
-        margin: 50,
+        margin: 10,
         display: "grid",
         gridTemplateColumns: "repeat(3, 1fr)",
         gridGap: 20,
