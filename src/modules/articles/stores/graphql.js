@@ -2,7 +2,6 @@ import gql from 'graphql-tag';
 import { print } from 'graphql/language/printer';
 import customAxios from '../../../config/customAxios';
 
-
 export const allArticles = async () => {
     try {
         return await customAxios({
@@ -39,8 +38,8 @@ export const getArticleByCatetogy = async (category) => {
             url: '/graphql',
             data: {
                 query: print(gql`
-                    query {
-                        getArticleByCatetogy(category: "${category}") {
+                    query getArticleByCatetogy($category: String!) {
+                        getArticleByCatetogy(category: $category) {
                             _id
                             url
                             source
@@ -53,7 +52,10 @@ export const getArticleByCatetogy = async (category) => {
                             urlToImage
                         }
                     }
-                `)
+                `),
+                variables: {
+                    category,
+                }
             }
         })
     } catch (err) {

@@ -94,6 +94,7 @@ export const LogIn = () => {
                     fullWidth
                     name="email"
                     label="Email Address"
+                    defaultValue="guest@email.com"
                     id="email"
                 />
                 <div className={classes.passWrapper}>
@@ -105,6 +106,7 @@ export const LogIn = () => {
                       fullWidth
                       name="password"
                       label="Password"
+                      defaultValue="guest1234"
                       type={passwordShown ? "text" : "password"}
                       id="password"
                   />

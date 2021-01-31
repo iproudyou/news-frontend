@@ -20,6 +20,7 @@ export default function SideDrawer() {
   const history = useHistory();
   
   const clickHandler = async (e, category) => {
+    e.preventDefault();
     dispatch({
       type: "SET_CATEGORY",
       category: {name: Utils.lowercase(category), label: category},
