@@ -22,7 +22,7 @@ import Cookies from 'js-cookie';
 
 import { submitLogIn } from '../stores/authApi';
 import hookFormStyles from '../../../styles/hookFormStyle';
-import authContext from '../stores/authContext';
+import custContext from '../../../contexts/custContext';
 
 const logInSchema = yup.object().shape({
     email: yup.string()
@@ -37,7 +37,7 @@ const logInSchema = yup.object().shape({
 });
 
 export const LogIn = () => {
-    const { dispatch } = useContext(authContext);
+    const { dispatch } = useContext(custContext);
     const eye = <FontAwesomeIcon icon={ faEye } />;
     const classes = hookFormStyles();
     const history = useHistory();
@@ -60,7 +60,7 @@ export const LogIn = () => {
           Cookies.set('x_auth_refresh', refreshToken);
 
           dispatch({type: "SET_USER", user: result.data.data.user});
-          history.push("/news");
+          history.push("/main");
         } 
       } catch (err) {
           setErrorLoginFail(true)
