@@ -14,8 +14,9 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
+    "buffer": "^6.0.3",
     "classnames": "^2.2.6",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react": "^7.22.0",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.11.0",
@@ -31,17 +32,18 @@
     "react-hook-form": "^6.13.1",
     "react-query": "^3.6.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1",
     "sweetalert2": "^10.12.6",
+    "util": "^0.12.3",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others \"npm run start\""
+    "dev": "webpack --env development",
+    "start": "webpack serve --port 3000 --host 0.0.0.0",
+    "build": "webpack --env production",
+    "heroku-postbuild": "webpack --env production",
+    "format": "prettier  --write \"src/**/*.js\"",
+    "eslint-fix": "eslint  --fix \"src/**/*.js\""
   },
   "browserslist": {
     "production": [
@@ -56,7 +58,33 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.15",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/runtime": "^7.12.13",
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-prettier": "^3.3.0"
+    "babel-loader": "^8.2.2",
+    "crypto-browserify": "^3.12.0",
+    "css-loader": "^5.0.2",
+    "dotenv-webpack": "^6.0.0",
+    "eslint": "^7.20.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.0.0",
+    "node-sass": "^5.0.0",
+    "prettier": "^2.2.1",
+    "process": "^0.11.10",
+    "sass-loader": "^11.0.1",
+    "stream-browserify": "^3.0.0",
+    "style-loader": "^2.0.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
   }
 }
