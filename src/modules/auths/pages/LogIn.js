@@ -25,127 +25,122 @@ import hookFormStyles from '../../../styles/hookFormStyle';
 import custContext from '../../../contexts/custContext';
 
 const logInSchema = yup.object().shape({
-    email: yup.string()
-      .required()
-      .email(),
+  email: yup.string().required().email(),
 
-    password: yup.string()
-      .min(8)
-      .max(30)
-      .matches(new RegExp('^[a-zA-Z0-9]{8,30}$'), '')
-      .required()
+  password: yup.string().min(8).max(30).matches(new RegExp('^[a-zA-Z0-9]{8,30}$'), '').required(),
 });
 
 export const LogIn = () => {
-    const { dispatch } = useContext(custContext);
-    const eye = <FontAwesomeIcon icon={ faEye } />;
-    const classes = hookFormStyles();
-    const history = useHistory();
-    const { register, handleSubmit, errors, formState } = useForm({
-      mode: "onBlur",
-      resolver: yupResolver(logInSchema),
-    });
+  const { dispatch } = useContext(custContext);
+  const eye = <FontAwesomeIcon icon={faEye} />;
+  const classes = hookFormStyles();
+  const history = useHistory();
+  const { register, handleSubmit, errors, formState } = useForm({
+    mode: 'onBlur',
+    resolver: yupResolver(logInSchema),
+  });
 
-    const [errorLoginFail, setErrorLoginFail] = React.useState(false);
-    const [passwordShown, setPasswordShown] = React.useState(false);
+  const [errorLoginFail, setErrorLoginFail] = React.useState(false);
+  const [passwordShown, setPasswordShown] = React.useState(false);
 
-    const onSubmit = React.useCallback(async (data) => {
-      try {
-        setErrorLoginFail(false);
-        const result = await submitLogIn(data);
+  const onSubmit = React.useCallback(async (data) => {
+    try {
+      setErrorLoginFail(false);
+      const result = await submitLogIn(data);
 
-        if (result.data.success === true) {
-          const { accessToken, refreshToken } = result.data.data;
-          Cookies.set('x_auth_access', accessToken);
-          Cookies.set('x_auth_refresh', refreshToken);
+      if (result.data.success === true) {
+        const { accessToken, refreshToken } = result.data.data;
+        Cookies.set('x_auth_access', accessToken);
+        Cookies.set('x_auth_refresh', refreshToken);
 
-          dispatch({type: "SET_USER", user: result.data.data.user});
-          history.push("/main");
-        } 
-      } catch (err) {
-          setErrorLoginFail(true)
+        dispatch({ type: 'SET_USER', user: result.data.data.user });
+        history.push('/main');
       }
-    })
-
-    const togglePasswordVisiblity = () => {
-      setPasswordShown(passwordShown ? false : true);
+    } catch (err) {
+      setErrorLoginFail(true);
     }
+  });
 
-    return (
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <Box className={classes.paper}>
-              <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-              </Typography>
-              <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)}>
-                {errorLoginFail && (
-                  <Box>
-                    <Alert severity="error">Email or password is incorrect</Alert>
-                  </Box>
-                )}
-                <TextField
-                    error={errors.email}
-                    helperText={errors.email && errors.email.message}
-                    margin="normal"
-                    inputRef={register}
-                    fullWidth
-                    name="email"
-                    label="Email Address"
-                    defaultValue="guest@email.com"
-                    id="email"
-                />
-                <div className={classes.passWrapper}>
-                  <TextField
-                      error={errors.password}
-                      helperText={errors.password && errors.password.message}
-                      margin="normal"
-                      inputRef={register}
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      defaultValue="guest1234"
-                      type={passwordShown ? "text" : "password"}
-                      id="password"
-                  />
-                  <i className={classes.eye} onClick={togglePasswordVisiblity}>{ eye }</i>
-                </div>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      inputRef={register}
-                      name="remember"
-                      color={passwordShown ? "primary" : "secondary"}
-                      defaultValue={false}
-                    />
-                  }
-                  label="Remember me"
-                />
-                <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    className={classes.submit}
-                    disabled={!formState.isValid}
-                >
-                    Sign In
-                </Button>
-                <Grid container>
-                    {/* <Grid item xs>
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5"></Typography>
+        <form className={classes.form} noValidate onSubmit={handleSubmit(onSubmit)}>
+          {errorLoginFail && (
+            <Box>
+              <Alert severity="error">Email or password is incorrect</Alert>
+            </Box>
+          )}
+          <TextField
+            error={errors.email}
+            helperText={errors.email && errors.email.message}
+            margin="normal"
+            inputRef={register}
+            fullWidth
+            name="email"
+            label="Email Address"
+            defaultValue="guest@email.com"
+            id="email"
+          />
+          <div className={classes.passWrapper}>
+            <TextField
+              error={errors.password}
+              helperText={errors.password && errors.password.message}
+              margin="normal"
+              inputRef={register}
+              fullWidth
+              name="password"
+              label="Password"
+              defaultValue="guest1234"
+              type={passwordShown ? 'text' : 'password'}
+              id="password"
+            />
+            <i className={classes.eye} onClick={togglePasswordVisiblity}>
+              {eye}
+            </i>
+          </div>
+          <FormControlLabel
+            control={
+              <Checkbox
+                inputRef={register}
+                name="remember"
+                color={passwordShown ? 'primary' : 'secondary'}
+                defaultValue={false}
+              />
+            }
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            className={classes.submit}
+            disabled={!formState.isValid}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            {/* <Grid item xs>
                     <Link href="#" variant="body2">
                         Forgot password?
                     </Link>
                     </Grid> */}
-                    <Grid item>
-                    <Link href="/signup" variant="body2">
-                        {"Don't have an account? Sign Up"}
-                    </Link>
-                    </Grid>
-                </Grid>
-              </form>
-          </Box>
-          </Container>
-    );
-}
+            <Grid item>
+              <Link href="/signup" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </Box>
+    </Container>
+  );
+};

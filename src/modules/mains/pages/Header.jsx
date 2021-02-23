@@ -11,12 +11,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
 import { submitLogOut } from '../../auths/stores/authApi';
 import { pullNewsApi } from '../../articles/stores/newsApi';
 import custContext from '../../../contexts/custContext';
 import mainLayoutStyle from '../../../styles/mainLayoutStyle';
-
 
 export default function Header() {
   

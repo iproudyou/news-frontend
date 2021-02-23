@@ -15,7 +15,6 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
-    "concurrently": "^6.0.0",
     "eslint-plugin-react": "^7.21.5",
     "graphql": "^15.4.0",
     "graphql-request": "^3.4.0",
@@ -32,7 +31,7 @@
     "react-hook-form": "^6.13.1",
     "react-query": "^3.6.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "4.0.1",
     "sweetalert2": "^10.12.6",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.8"
@@ -42,7 +41,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "concurrently --kill-others \"npm run start\""
+    "dev": "concurrently --kill-others \"npm run start\"",
+    "format": "prettier  --write \"src/**/*.js\"",
+    "eslint-fix": "eslint  --fix \"src/**/*.js\""
   },
   "browserslist": {
     "production": [
@@ -58,6 +59,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint-plugin-prettier": "^3.3.0"
+    "eslint": "^7.20.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1"
   }
 }

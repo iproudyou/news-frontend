@@ -15,6 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import newsArticleStyle from '../../../styles/newsArticleStyle';
+import Link from '@material-ui/core/Link';
 
 export default function NewsArticle({ data }) {
   const classes = newsArticleStyle();
@@ -40,11 +41,9 @@ export default function NewsArticle({ data }) {
         title={data.title}
         subheader={data.publishedAt.substring(0, 10)}
       />
-      <CardMedia 
-        className={classes.media}
-        image={data.urlToImage}
-        title={data.source}
-      />
+      <Link href={data.url} target="_blank">
+        <CardMedia className={classes.media} image={data.urlToImage} title={data.source} />
+      </Link>
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {data.description}
@@ -70,9 +69,7 @@ export default function NewsArticle({ data }) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>
-              {data.content}
-          </Typography>
+          <Typography paragraph>{data.content}</Typography>
         </CardContent>
       </Collapse>
     </Card>
@@ -80,6 +77,5 @@ export default function NewsArticle({ data }) {
 }
 
 NewsArticle.propTypes = {
-    data: PropTypes.object,
+  data: PropTypes.object,
 };
-
