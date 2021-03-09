@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { print } from 'graphql/language/printer';
 import customAxios from '../../../config/customAxios';
+import Cookies from 'js-cookie';
 
 export const allArticles = async () => {
   try {
@@ -33,6 +34,7 @@ export const allArticles = async () => {
 
 export const getArticleByCatetogy = async (category) => {
   try {
+    customAxios.defaults.headers['Authorization'] = `Bearer ${Cookies.get('x_auth_access')}`; 
     return await customAxios({
       method: 'post',
       url: '/graphql',
@@ -56,7 +58,7 @@ export const getArticleByCatetogy = async (category) => {
         variables: {
           category,
         },
-      },
+      }
     });
   } catch (err) {
     throw new Error();
