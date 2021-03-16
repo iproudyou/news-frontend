@@ -1,5 +1,6 @@
 # APP-UI
-- This is a frontend component of microservice full-stack application. See app-api for a backend component. 
+- This is a frontend component of a microservice full-stack application. 
+  (See app-api for a backend component)
 - This is react application to display articles from different news websites
 - A user authentication is required to view these articles
 - A user can filter articles by categories
