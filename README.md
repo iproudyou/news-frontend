@@ -5,6 +5,9 @@
 - A user can filter articles by categories
 - An admin user can fetch the most recent news and UI gets updated
 
+## WEBSITE
+- http://iproudu.com
+
 ## GUEST ACCOUNT
 - username: guest@email.com
 - password: guest1234
