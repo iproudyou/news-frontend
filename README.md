@@ -16,6 +16,6 @@
 ## STRUCTURE
 - Customized with **React-Hook-Form, React-Hook, and React-Query**
 - Implemented the build process with **Webpack and Babel**
-- Communicates with app-api via **RESTful API and GraphQL**
+- Communicates with app-api via **Axios**
 - Designed the interface with **Material-UI**
 - Incorporated **Nginx and Docker**
