@@ -1,5 +1,5 @@
 # APP-UI
-- This is a react application to display articles from different news websites
+- This is a microservice react application to display articles from different news websites
 - A user authentication is required to view these articles
 - A user can filter articles by categories
 - An admin user can fetch the most recent news and UI gets updated
