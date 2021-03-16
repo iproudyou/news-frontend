@@ -7,7 +7,7 @@
 ## GUEST ACCOUNT
 - username: guest@email.com
 - password: guest1234
-- Create one youself!
+- You can create one youself!
 
 ## ADMIN ACCOUNT
 - username: iproudyou@gmail.com
