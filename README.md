@@ -1,12 +1,13 @@
 # APP-UI
-- This is a react application to display articles from different news websites.
-- A user authentication is required to view these articles.
-- A user can filter articles by categories.
-- An admin user can fetch the most recent news and UI gets updated.
+- This is a react application to display articles from different news websites
+- A user authentication is required to view these articles
+- A user can filter articles by categories
+- An admin user can fetch the most recent news and UI gets updated
 
 ## GUEST ACCOUNT
 - username: guest@email.com
 - password: guest1234
+- Create one youself!
 
 ## ADMIN ACCOUNT
 - username: iproudyou@gmail.com
