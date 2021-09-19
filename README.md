@@ -8,15 +8,6 @@
 ## WEBSITE
 - http://iproudu.com
 
-## GUEST ACCOUNT
-- username: guest@email.com
-- password: guest1234
-- You can create one youself!
-
-## ADMIN ACCOUNT
-- username: iproudyou@gmail.com
-- password: 00000000
-
 ## STRUCTURE
 - Customized with **React-Hook-Form, React-Hook, and React-Query**
 - Implemented the build process with **Webpack and Babel**
