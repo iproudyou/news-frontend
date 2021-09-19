@@ -7,10 +7,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -31,15 +36,17 @@ const createAccountSchema = yup.object().shape({
 
   passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
 
+  role: yup.string().required().oneOf(['customer', 'admin'], 'Role must be either customer or admin'),
+
   phoneNumber: yup
     .string()
-    .matches(new RegExp('^[0-9]+$'), { message: 'only numbers are allowed', excludeEmptyString: true }),
+    .matches(new RegExp('^[0-9]+$'), { message: 'Only numbers are allowed', excludeEmptyString: true }),
 });
 
 export const SignUp = () => {
   const eye = <FontAwesomeIcon icon={faEye} />;
   const classes = hookFormStyles();
-  const { register, handleSubmit, errors, unregister, formState } = useForm({
+  const { register, handleSubmit, errors, unregister, formState, control } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(createAccountSchema),
   });
@@ -47,6 +54,7 @@ export const SignUp = () => {
 
   const [errorEmail, setErrorEmail] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
+  const [role, setRole] = useState('');
 
   const onBlur = async (event) => {
     const { name, value } = event.target;
@@ -71,6 +79,10 @@ export const SignUp = () => {
 
   const togglePasswordVisiblity = () => {
     setPasswordShown(passwordShown ? false : true);
+  };
+
+  const handleChangeRole = (event) => {
+    setRole(event.target.value);
   };
 
   return (
@@ -157,6 +169,22 @@ export const SignUp = () => {
             name="phoneNumber"
             onBlur={onBlur}
           />
+          <FormControl className={classes.formControl} fullWidth>
+            <InputLabel id="roleLabel">Role</InputLabel>
+            <Controller
+              as={
+                <Select labelId="roleLabel" value={role} onChange={handleChangeRole} ref={register}>
+                  <MenuItem value={'customer'}>Customer</MenuItem>
+                  <MenuItem value={'admin'}>Admin</MenuItem>
+                </Select>
+              }
+              id="role"
+              name="role"
+              control={control}
+              defaultValue={role}
+            />
+            <FormHelperText>Only admins will be able to fetch recent news</FormHelperText>
+          </FormControl>
           <FormControlLabel
             control={<Checkbox inputRef={register} name="remember" color="primary" defaultValue={false} />}
             label="Remember me"
