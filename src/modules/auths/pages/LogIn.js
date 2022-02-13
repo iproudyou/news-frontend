@@ -99,7 +99,7 @@ export const LogIn = () => {
               fullWidth
               name="password"
               label="Password"
-              defaultValue="guest1234"
+              defaultValue="password"
               type={passwordShown ? 'text' : 'password'}
               id="password"
             />
